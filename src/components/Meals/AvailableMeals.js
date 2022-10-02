@@ -28,6 +28,12 @@ const DUMMY_MEALS = [
       description: 'Healthy...and green...',
       price: 18.99,
     },
+    {
+      id: 'm5',
+      name: 'Swedish pizza',
+      description: 'Tasty and delicious',
+      price: 15.99,
+    },
   ];
 
 function AvailableMeals() {
