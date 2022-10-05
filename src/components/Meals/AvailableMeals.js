@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import './AvailableMeals.css';
 import Card from '../UI/Card';
 import MealItem from './MealItem/MealItem';
@@ -39,34 +39,10 @@ import MealItem from './MealItem/MealItem';
 function AvailableMeals() {
   const[meals, setMeals] = useState([]);
 
-  // const fetchMeals = async() => {
-  //   try{
-  //     const response = await fetch ('https://food-order-app-dab3c-default-rtdb.firebaseio.com/');
-  //     const data = await response.json();
-  //     console.log('dataaaa', data);
-  //     const fetchedMeals = [];
-
-  //     for(const key in data){
-  //       const Meals ={
-  //         id: key,
-  //         ...data[key]
-  //       }
-
-  //       console.log(Meals);
-
-  //       fetchedMeals.push(Meals)
-  //     }
-
-  //     setMeals(fetchedMeals);
-  //   } catch (err){
-      
-  //   }
-  //   };
-
-    useEffect=(async()=> {
+  const fetchMeals = async() => {
+    try{
       const response = await fetch ('https://food-order-app-dab3c-default-rtdb.firebaseio.com/meals.json');
       const data = await response.json();
-      console.log('dataaaa', data);
       const fetchedMeals = [];
 
       for(const key in data){
@@ -79,6 +55,13 @@ function AvailableMeals() {
       }
 
       setMeals(fetchedMeals);
+    } catch (err){
+      
+    }
+    };
+
+    useEffect(()=> {
+     fetchMeals();
     }, [])
 
   return (
