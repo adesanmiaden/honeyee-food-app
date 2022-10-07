@@ -34,14 +34,17 @@ function Cart(props) {
       body: JSON.stringify({
         user: userData,
         orderedItems:ctx.items
-      }),
+      })
     })
+
+    if(response.ok) {
+      setDidSubmit(true);
+    }
   } catch (err){
     setError(err.message);
   }
 
     setIsSubmitting(false);
-    setDidSubmit(true);
   }
 
   const cartItems = (
@@ -60,6 +63,11 @@ function Cart(props) {
 
   return (
     <Modal onHideCart={props.onHideCart}>
+      {didSubmit ? 
+      <section>
+        <p>Order submitted succesfully... Your food is on the way!</p>
+      </section> :
+      <>
       {cartItems}
       <div className="total">
         <span>Total Amount</span>
@@ -71,6 +79,9 @@ function Cart(props) {
         {hasItems && <button className="button" onClick={handleOrder}>Order</button>}
       </div>
 }
+      </>
+      }
+      
     </Modal>
   );
 }
